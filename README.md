@@ -1,4 +1,4 @@
-# README - Flask APP
+# Flask APP
 
 ## Starting the Docker Container
 
