@@ -1,0 +1,36 @@
+version: '1.0'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - "C:\\Users\\Murad Aladdinzada\\Desktop\\Vanderbilt MSDS\\Fall 2024\\NoSQL\\MiniProject2\\:/ds5760/mongo"
+    networks:
+        - app-network
+    environment: # disabling this for class practice only
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: examplepassword
+  python-app:
+      image: python:3.9-slim
+      container_name: slim-python
+      volumes:
+        - "C:\\Users\\Murad Aladdinzada\\Desktop\\Vanderbilt MSDS\\Fall 2024\\NoSQL\\MiniProject2\\:/ds5760/mongo"
+      ports:
+      - "5000:5000"
+      working_dir: /ds5760/mongo
+      networks:
+        - app-network
+      depends_on:
+        - mongodb
+      command: tail -f /dev/null
+      
+
+
+networks:
+  app-network:
+    driver: bridge
+
+
+
